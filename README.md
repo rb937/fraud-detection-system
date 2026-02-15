@@ -10,7 +10,7 @@
 
 ## Live Demo
 
-<video src="media/dashboard_demo.mp4" controls="controls" width="100%"></video>
+![System Demo](media/dashboard_demo.gif)
 
 *(Note: If the video player above does not load, you can [download the demo here](media/dashboard_demo.mp4).)*
 
