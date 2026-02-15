@@ -10,9 +10,9 @@
 
 ## Live Demo
 
-![System Demo](media/dashboard_demo.gif)
+![deshboard_demo](https://github.com/user-attachments/assets/f5ec9df0-f181-4ec7-a70d-034de7631411)
 
-*(Note: If the video player above does not load, you can [download the demo here](media/dashboard_demo.mp4).)*
+*(Note: If the video above doesn't play, please check the `media/` folder.)*
 
 ---
 
