@@ -84,10 +84,10 @@ pip install -r requirements.txt
 Run either the training script or the notebook (both are equivalent):
 
 ```bash
-python train_model.py
+python train_model.ipynb
 ```
 
-or open `train_model.ipynb` and run all cells. This will automatically create the `model/` folder containing `fraud_model.pkl`.
+This will automatically create the `model/` folder containing `fraud_model.pkl`.
 
 ### Step 3: Run the Dashboard
 
@@ -114,7 +114,6 @@ fraud-detection-system/
 │   ├── features.pkl        # Column names for consistency
 │   └── category_encoder.pkl# LabelEncoder for categorical data
 ├── app.py                  # Streamlit Dashboard Application
-├── train_model.py          # Feature Engineering & Training script
 ├── train_model.ipynb       # Feature Engineering & Training Lab
 ├── requirements.txt        # Python dependencies
 └── README.md               # Project Documentation
