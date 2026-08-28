@@ -59,6 +59,10 @@ The raw dataset contained basic fields. We engineered the following **High-Value
 2.  `hour_of_day`: Extracted from timestamps (Fraud spikes 2 AM - 4 AM).
 3.  `age`: Derived from Date of Birth.
 4.  `category_enc`: Label Encoded merchant categories.
+5.  `amt`: Transaction amount (converted from USD to INR in the app at **1 USD = 95 INR**).
+
+> **Currency note:** the raw dataset is in **USD**, but the dashboard works in **INR**. The model is
+> trained on USD and the app converts INR → USD at a fixed rate before inference.
 
 ---
 
@@ -77,9 +81,13 @@ pip install -r requirements.txt
 
 ### Step 2: Generate the Model
 
-1. Open the training notebook: `train_model.ipynb`
-2. Run all cells to train the Random Forest on your machine.
-3. This will automatically create the `model/` folder containing `fraud_model.pkl`.
+Run either the training script or the notebook (both are equivalent):
+
+```bash
+python train_model.py
+```
+
+or open `train_model.ipynb` and run all cells. This will automatically create the `model/` folder containing `fraud_model.pkl`.
 
 ### Step 3: Run the Dashboard
 
@@ -96,15 +104,18 @@ streamlit run app.py
 
 ```text
 fraud-detection-system/
-├── data/                   # Raw CSV files
+├── data/                   # Raw CSV files (ignored by git)
+│   └── .gitkeep
 ├── media/                  # Demo videos and assets
-│   └── dashboard_demo.mp4 
-├── model/                  # Serialized Model Artifacts (Generated locally)
+│   ├── deshboard_demo.gif
+│   └── deshboard_demo.mp4
+├── model/                  # Serialized Model Artifacts (Generated locally, ignored)
 │   ├── fraud_model.pkl     # The trained Random Forest
 │   ├── features.pkl        # Column names for consistency
 │   └── category_encoder.pkl# LabelEncoder for categorical data
 ├── app.py                  # Streamlit Dashboard Application
+├── train_model.py          # Feature Engineering & Training script
 ├── train_model.ipynb       # Feature Engineering & Training Lab
+├── requirements.txt        # Python dependencies
 └── README.md               # Project Documentation
-
 ```
