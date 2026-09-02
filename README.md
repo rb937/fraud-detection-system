@@ -20,7 +20,7 @@
 Banks lose billions annually to credit card fraud. Traditional rule-based systems often miss subtle patterns or generate too many false alarms. This project solves this by using a **Random Forest Classifier** to learn complex, non-linear relationships between transaction features.
 
 **Key Challenges Addressed:**
-* **Class Imbalance:** Fraud makes up <0.5% of transactions. We handled this using **Class Weights** and **SMOTE** (Synthetic Minority Over-sampling Technique) to ensure high recall.
+* **Class Imbalance:** Fraud makes up <0.5% of transactions. Training uses conservative **SMOTENC** (the categorical-safe form of SMOTE) plus class weights to improve minority recall.
 * **Context Awareness:** A ₹5,000 transaction is normal at 5 PM but suspicious at 3 AM. A transaction in Delhi is normal, but one in Paris 10 minutes later from same person is very suspicious.
 
 ---
@@ -81,11 +81,13 @@ pip install -r requirements.txt
 
 ### Step 2: Generate the Model
 
-Run either the training script or the notebook (both are equivalent):
+Run the training notebook:
 
 ```bash
-python train_model.ipynb
+jupyter notebook train_model.ipynb
 ```
+
+The notebook includes missing-value, class-balance, and correlation analysis. SMOTENC is applied only after the stratified train/test split, so synthetic examples cannot leak into evaluation. It uses a partial 0.25 sampling ratio, `k_neighbors=3`, and a regularized Random Forest (`max_depth=12`, `min_samples_leaf=10`, and `min_samples_split=20`) to reduce overfitting. Training prints ROC-AUC, PR-AUC, classification metrics, and train/test gaps; PR-AUC is the primary metric for this highly imbalanced problem.
 
 This will automatically create the `model/` folder containing `fraud_model.pkl`.
 
